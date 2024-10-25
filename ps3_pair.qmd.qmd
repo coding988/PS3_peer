@@ -16,7 +16,7 @@ include-before-body:
       breaklines
     }
 ---
----
+
 
 ```{python}
 import pandas as pd
@@ -25,13 +25,18 @@ import numpy as np
 np.random.seed(42)
 data = pd.DataFrame(np.random.rand(100), columns=['Random Numbers'])
 
+# Updated preview_data function
 def preview_data(df):
-    print(df.head())
+    head_data = df.head()
+    describe_data = df.describe()
+    return [head_data, describe_data]
 
-preview_data(data)
+# Call the function to test
+output = preview_data(data)
+print("Head of DataFrame:")
+print(output[0])
+print("\nDescription of DataFrame:")
+print(output[1])
+
 ```
 
-
-```{python}
-
-```
