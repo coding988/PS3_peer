@@ -1,0 +1,49 @@
+---
+title: "30538 Problem Set 3: git pair"
+author: "Mauricio Paniagua"
+format: 
+  pdf:
+    keep-tex: true
+    include-in-header: 
+       text: |
+         \usepackage{fvextra}
+         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+include-before-body:
+  text: |
+    \RecustomVerbatimEnvironment{verbatim}{Verbatim}{
+      showspaces = false,
+      showtabs = false,
+      breaksymbolleft={},
+      breaklines
+    }
+---
+
+```{python}
+import pandas as pd
+import numpy as np
+import altair as alt
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Create a DataFrame with random numbers
+data = pd.DataFrame(np.random.rand(100), columns=['Random Numbers'])
+
+def preview_data(df):
+    # Get the head of the DataFrame
+    material_head = df.head()
+    
+    # Create a histogram plot using Altair
+    histogram = alt.Chart(df).mark_bar().encode(
+        x='Random Numbers:Q',  # Quantitative encoding for x-axis
+        y='count()',            # Count of occurrences for y-axis
+    ).properties(
+        title='Histogram of Random Numbers'  # Title for the histogram
+    )
+
+    # Return a list containing the head and the histogram
+    return [material_head, histogram]
+
+# Call the function to preview data (if needed)
+result = preview_data(data)
+```
